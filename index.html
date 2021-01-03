@@ -17,6 +17,7 @@ body {
   left: 20px;
 }
 .menutrigger {
+  cursor: pointer;
   color: #000000;
   padding: 6px;
   width: 32px;
@@ -64,6 +65,7 @@ body {
 <script>
 function mapBG(maps) { 
   document.body.style.backgroundImage = "url('img/" + maps + "')";
+  hideBallistics();
 }
 function displaymenu(vis) {
   document.getElementById("menudropdown").style.visibility = vis;
@@ -72,7 +74,7 @@ function displaymenu(vis) {
 var ballistics = true;
 function toggleBallistics() {
   if (ballistics) {
-    document.getElementById("ballisticstrigger").style.background = "rgba(255, 0, 0, 0.7)";
+    document.getElementById("ballisticstrigger").style.background = "rgba(255, 80, 80, 0.9)";
     document.getElementById("ballisticscontainer").style.visibility = "visible";
     ballistics = false;
   } else {
@@ -81,14 +83,19 @@ function toggleBallistics() {
     ballistics = true;
   }
 }
+function hideBallistics() {
+  document.getElementById("ballisticstrigger").style.background = "rgba(255, 255, 255, 0.5)";
+  document.getElementById("ballisticscontainer").style.visibility = "hidden";
+  ballistics = true;
+}
 </script>
 
 <title>Tarkov maps</title>
 <body>
 
 <div class="menucontainer" id="menucontainer">
-<div class="menutrigger" id="menutrigger" onmouseover="displaymenu('visible');" onmouseout="displaymenu('hidden');">
-<a href="javascript:mapBG('tarkov.png');"><img src="img/arrow.png" width="32" height="32"></a>
+<div class="menutrigger" id="menutrigger" onclick="mapBG('tarkov.png');" onmouseover="displaymenu('visible');" onmouseout="displaymenu('hidden');">
+<img src="img/arrow.png" width="32" height="32">
 </div>
 <div class="menudropdown" id="menudropdown" onmouseover="displaymenu('visible');" onmouseout="displaymenu('hidden');">
 <a class="menulink" href="javascript:mapBG('CustomsLargeExpansionGloryMonki_resize.png');">CUSTOMS</a>
