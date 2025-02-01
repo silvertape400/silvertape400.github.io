@@ -125,6 +125,70 @@ body {
   width: 300px;
   height: 150px;
 }
+#updatedtrigger {
+  position: fixed;
+  top: 1px;
+  left: 1px;
+  cursor: pointer;
+  font-family: verdana;
+  font-size: 9px;
+  color: #FFFFFF;
+  text-shadow:
+    1px 1px 0 #000000,
+	-1px 1px 0 #000000,
+	-1px -1px 0 #000000,
+	1px -1px 0 #000000;
+}
+#updatedtrigger:hover {
+  color: #FF0000
+}
+#updatedcontainer {
+  position: absolute;
+  display: none;
+  margin: 0px;
+  padding: 0px;
+  top: 200px;
+  left: 240px;
+  width: 300px;
+}
+#updatedcontainertitle {
+  cursor: move;
+  color: #000000;
+  padding: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color:rgba(255, 255, 255, 0.5);
+  border: 1px #505050 solid;
+  border-bottom: none;
+  width: 100%;
+}
+#updatedtext {
+  cursor: default;
+  color: #000000;
+  padding: 16px;
+  background-color:rgba(255, 255, 255, 0.7);
+  border: 1px #505050 solid;
+  width: 100%;
+}
+#updatedclose {
+  cursor: pointer;
+  color: #000000;
+  padding: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color:rgba(255, 255, 255, 0.7);
+  border: 1px #505050 solid;
+  border-top: none;
+  text-align: right;
+  width: 100%;
+}
+#updatedclose:hover {
+  background-color:rgba(255, 0, 0, 0.7);
+}
 </style>
 <script>
 function mapBG(maps) { 
@@ -184,6 +248,16 @@ function toggleNotes() {
     notes = true;
   }
 }
+var updated = true;
+function toggleUpdated() {
+  if (updated) {
+    document.getElementById("updatedcontainer").style.display = "block";
+    updated = false;
+  } else {
+    document.getElementById("updatedcontainer").style.display = "none";
+    updated = true;
+  }
+}
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "title")) {
@@ -224,7 +298,7 @@ function dragElement(elmnt) {
 </script>
 <title>Tarkov maps</title>
 <body>
-
+<div id="updatedtrigger" onclick="toggleUpdated();">Updated 01-02-2025</div>
 <div id="ballisticscontainer" width="100%" height="100%">
 <iframe width="100%" height="100%" id="ballisticsframe" src="https://escapefromtarkov.gamepedia.com/Ballistics#Armor_penetration_tables" title="Ballistics"></iframe> 
 </div>
@@ -237,10 +311,11 @@ function dragElement(elmnt) {
 <img src="img/arrow.png" width="32" height="32">
 </div>
 <div id="menudropdown" onmouseover="displaymenu('block');" onmouseout="displaymenu('none');">
-<a class="menulink" href="javascript:mapBG('CustomsLargeExpansionGloryMonki_resize.png');">CUSTOMS</a>
+<a class="menulink" href="javascript:mapBG('CustomsMapRealNorthColour_Reemr.png');">CUSTOMS</a>
+<a class="menulink" href="javascript:mapBG('CustomsDormsByre3mr.jpg');">CUSTOMS: DORMS</a>
 <a class="menulink" href="javascript:mapBG('Interchange2DMapLorathor_resize.png');">INTERCHANGE</a>
 <a class="menulink" href="javascript:mapBG('Shoreline2DMapByMonkiUpdatedByJindouz.png');">SHORELINE</a>
-<a class="menulink" href="javascript:mapBG('Factory_3D_b_Johnny_Tushonka_resize.png');">FACTORY</a>
+<a class="menulink" href="javascript:mapBG('Factory2DMapbyRe3mr.jpg');">FACTORY</a>
 <a class="menulink" href="javascript:mapBG('Glory4lyfeWoods_map_v4_marked.png');">WOODS</a>
 <a class="menulink" href="javascript:mapBG('Jindouz_Lighthouse_Map_V1.png');">LIGHTHOUSE</a>
 <a class="menulink" href="javascript:mapBG('JindouzReserve_v1_2dmap.png');">RESERVE</a>
@@ -262,5 +337,13 @@ NOTES
 <div id="notescontainertitle">NOTES</div>
 <div id="notes"><textarea id="note">These notes disappear on page refresh.</textarea></div>
 </div>
+<div id="updatedcontainer">
+<div id="updatedcontainertitle">Updated 01-02-2025</div>
+<div id="updatedtext">Updated all maps except Interchange which did'nt have a decent version out.</div>
+<div id="updatedclose" class="menulink" onclick="toggleUpdated();">CLOSE</div>
+</div>
 </body>
-<script>dragElement(document.getElementById("notescontainer"));</script>
+<script>
+dragElement(document.getElementById("notescontainer"));
+dragElement(document.getElementById("updatedcontainer"));
+</script>
